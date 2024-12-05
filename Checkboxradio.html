@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkboxradio</title>
+
+    <!-- Include Bootstrap and jQuery UI CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+    <!-- Custom Styles -->
+    <style>
+        /* Deep Pink Theme */
+        body {
+            font-family: "Century Gothic", sans-serif;
+            background-color: palevioletred;
+            background-image: linear-gradient(135deg, deeppink 25%, pink 100%);
+            color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #ff66b2; /* Deep Pink */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Sidebar Styling */
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar li a {
+            display: block;
+            padding: 10px;
+            background-color: #1c1c1c;
+            color: #ff99cc;
+            border: 1px solid #ff66b2;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .sidebar li a:hover {
+            background-color: #ff66b2;
+            color: #ffffff;
+        }
+
+        /* Checkboxradio Styling */
+        .controls {
+            background-color: #222;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #ff66b2;
+        }
+
+        .controls h3 {
+            color: #ff99cc;
+            margin-bottom: 20px;
+        }
+
+        .brand-wrap, .shape-wrap, .toggle-wrap {
+            margin-bottom: 30px;
+        }
+
+        .toggle-wrap label {
+            color: #ff99cc;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 30px;
+            background-color: #141414;
+            color: #ff66b2;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .row {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>jQuery UI Checkboxradio - Deep Pink Theme</h1>
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-md-3 sidebar">
+                <h3>Widgets</h3>
+                <ul>
+                    <li><a href="../Accordion.html">Accordion</a></li>
+                    <li><a href="pages/Autocomplete.html">Autocomplete</a></li>
+                    <li><a href="pages/Button.html">Button</a></li>
+                    <li><a href="pages/Checkboxradio.html">Checkboxradio</a></li>
+                    <li><a href="pages/Controlgroup.html">Controlgroup</a></li>
+                    <li><a href="pages/Datepicker.html">Datepicker</a></li>
+                    <li><a href="pages/Dialog.html">Dialog</a></li>
+                    <li><a href="pages/Menu.html">Menu</a></li>
+                    <li><a href="pages/Progressbar.html">Progressbar</a></li>
+                    <li><a href="pages/Selectmenu.html">Selectmenu</a></li>
+                    <li><a href="pages/Slider.html">Slider</a></li>
+                    <li><a href="pages/Spinner.html">Spinner</a></li>
+                    <li><a href="pages/Tabs.html">Tabs</a></li>
+                    <li><a href="pages/Tooltip.html">Tooltip</a></li>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 controls">
+                <div class="brand-wrap">
+                    <h3>Select a brand</h3>
+                    <div class="brand">
+                        <label for="brand-jquery">jQuery</label>
+                        <input type="radio" name="brand" id="brand-jquery">
+                        <label for="brand-jquery-ui">jQuery UI</label>
+                        <input type="radio" name="brand" id="brand-jquery-ui" checked>
+                        <label for="brand-jquery-mobile">jQuery Mobile</label>
+                        <input type="radio" name="brand" id="brand-jquery-mobile">
+                    </div>
+                </div>
+                <div class="shape-wrap">
+                    <h3>Select a shape</h3>
+                    <div class="shape-bar">
+                        <label for="shape-circle">Circle</label>
+                        <input type="radio" name="shape" id="shape-circle" value="circle" checked>
+                        <label for="shape-square">Square</label>
+                        <input type="radio" name="shape" id="shape-square" value="square">
+                    </div>
+                </div>
+                <div class="toggle-wrap">
+                    <h3>Customize</h3>
+                    <div class="toggles">
+                        <label for="color">Shadow</label>
+                        <input class="toggle brand-toggle" type="checkbox" name="color" id="color">
+                        <label for="border">Border</label>
+                        <input class="toggle" type="checkbox" name="border" id="border">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>College of Information and Computing Sciences &copy; 2022</p>
+    </footer>
+
+    <!-- Include jQuery and jQuery UI JS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+            $("input").checkboxradio();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Categories</title>
+    <link rel="stylesheet" href="../css/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+
+    <style>
+        /* Deep Pink Color Scheme from Accordion */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: palevioletred;
+            background-image: linear-gradient(135deg, deeppink 25%, pink 100%);
+            color: #f4f4f9; /* Light Text */
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h3 {
+            color: #ff66b2; /* Deep Pink for Headers */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: #ff99cc; /* Light Pink Links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #ff66b2; /* Deep Pink on Hover */
+            text-decoration: underline;
+        }
+
+        .container {
+            margin-top: 40px;
+        }
+
+        /* Menu Styling */
+        #menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        #menu > li {
+            padding: 15px;
+            background-color: #1c1c1c; /* Dark Background for Menu Items */
+            border: 1px solid #ff66b2;
+            margin-bottom: 10px;
+            cursor: pointer;
+            color: #ff99cc; /* Light Pink Text */
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        #menu > li:hover {
+            background-color: #ff66b2; /* Light Pink on Hover */
+            color: #fff;
+        }
+
+        #menu > li.ui-state-disabled {
+            background-color: #880E4F; /* Dark Pink for Disabled Items */
+            color: #f4f4f9;
+        }
+
+        #menu > li > ul {
+            margin-left: 20px;
+            padding-left: 0;
+        }
+
+        #menu > li > ul > li {
+            background-color: #222; /* Dark Background for Submenu */
+            border: 1px solid #ff66b2;
+            padding: 10px;
+            margin-top: 8px;
+            color: #ffffff; /* White Text */
+            border-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px 0;
+            background-color: #141414;
+            color: #ff66b2;
+            font-size: 14px;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .col-md-3 {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>jQuery UI Menu - Categories</h1>
+        <div class="row">
+            <div class="col-md-3 col-12">
+                <h3>Widget</h3>
+                <ul>
+                    <li><a href="../Accordion.html">Accordion</a></li>
+                    <li><a href="/pages/Autocomplete.html">Autocomplete</a></li>
+                    <li><a href="/pages/Button.html">Button</a></li>
+                    <li><a href="/pages/Checkboxradio.html">Checkboxradio</a></li>
+                    <li><a href="/pages/Controlgroup.html">Controlgroup</a></li>
+                    <li><a href="/pages/Datepicker.html">Datepicker</a></li>
+                    <li><a href="/pages/Dialog.html">Dialog</a></li>
+                    <li><a href="/pages/Menu.html">Menu</a></li>
+                    <li><a href="/pages/Progressbar.html">Progressbar</a></li>
+                    <li><a href="/pages/Selectmenu.html">Selectmenu</a></li>
+                    <li><a href="/pages/Slider.html">Slider</a></li>
+                    <li><a href="/pages/Spinner.html">Spinner</a></li>
+                    <li><a href="/pages/Tabs.html">Tabs</a></li>
+                    <li><a href="/pages/Tooltip.html">Tooltip</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-9 col-12">
+                <div class="menu">
+                    <ul id="menu">
+                        <li class="ui-state-disabled"><div>Toys (n/a)</div></li>
+                        <li><div>Books</div></li>
+                        <li><div>Clothing</div></li>
+                        <li><div>Electronics
+                            <ul>
+                                <li class="ui-state-disabled"><div>Home Entertainment</div></li>
+                                <li><div>Car Hifi</div></li>
+                                <li><div>Utilities</div></li>
+                            </ul>
+                        </div></li>
+                        <li><div>Movies</div></li>
+                        <li><div>Music
+                            <ul>
+                                <li><div>Rock
+                                    <ul>
+                                        <li><div>Alternative</div></li>
+                                        <li><div>Classic</div></li>
+                                    </ul>
+                                </div></li>
+                                <li><div>Jazz
+                                    <ul>
+                                        <li><div>Freejazz</div></li>
+                                        <li><div>Big Band</div></li>
+                                        <li><div>Modern</div></li>
+                                    </ul>
+                                </div></li>
+                                <li><div>Pop</div></li>
+                            </ul>
+                        </div></li>
+                        <li class="ui-state-disabled"><div>Specials (n/a)</div></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>College of Information and Computing Sciences &copy; 2022</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $("#menu").menu();
+        });
+    </script>
+</body>
+</html>

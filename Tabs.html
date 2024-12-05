@@ -1,0 +1,280 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs - Simple manipulation</title>
+    <link rel="stylesheet" href="../css/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css"> 
+    <link rel="stylesheet" href="../css/custom.css">
+    <style>
+        /* General styles */
+        body {
+            font-family: "Century Gothic", sans-serif;
+            background-color:deeppink;
+            color: linear-gradient(palevioletred,pink);
+        }
+
+        h1, h3 {
+            color: #ff66b2;  /* Deep pink for headings */
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #ff66b2;
+        }
+
+        /* Container layout */
+        .container {
+            padding: 20px;
+        }
+
+        .col-1 {
+            margin-bottom: 20px;
+        }
+
+        /* Menu Styling */
+        #menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        #menu > li {
+            padding: 15px;
+            background-color: #1c1c1c; /* Dark Background for Menu Items */
+            border: 1px solid #ff66b2;
+            margin-bottom: 10px;
+            cursor: pointer;
+            color: #ff99cc; /* Light Pink Text */
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        #menu > li:hover {
+            background-color: #ff66b2; /* Light Pink on Hover */
+            color: #fff;
+        }
+
+        #menu > li.ui-state-disabled {
+            background-color: #880E4F; /* Dark Pink for Disabled Items */
+            color: #f4f4f9;
+        }
+
+        #menu > li > ul {
+            margin-left: 20px;
+            padding-left: 0;
+        }
+
+        #menu > li > ul > li {
+            background-color: #222; /* Dark Background for Submenu */
+            border: 1px solid #ff66b2;
+            padding: 10px;
+            margin-top: 8px;
+            color: #ffffff; /* White Text */
+            border-radius: 5px;
+        }
+
+        /* Tabs styles */
+        #tabs {
+            margin-top: 1em;
+            background: #1c1c1c; /* Dark background like menu */
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        #tabs ul {
+            padding: 0;
+            list-style-type: none;
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+            background-color: #1c1c1c; /* Same dark background as menu */
+            border-radius: 8px;
+        }
+
+        #tabs li {
+            margin-right: 10px;
+            background-color: #ff66b2; /* Light pink background */
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 1.1em;
+            color: #fff; /* White text color */
+            transition: background-color 0.3s;
+        }
+
+        #tabs li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        #tabs li:hover {
+            background-color: #ff3385; /* Darker pink on hover */
+        }
+
+        #tabs .ui-icon-close {
+            color: white;
+            margin-left: 5px;
+        }
+
+        /* Tab dialog styles */
+        #dialog {
+            color: #333;
+        }
+
+        #dialog label {
+            color: #ff66b2;
+            margin-top: 0.5em;
+        }
+
+        #dialog input, #dialog textarea {
+            width: 95%;
+            padding: 8px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: 2px solid #ff66b2;
+        }
+
+        #dialog input[type="text"], #dialog textarea {
+            background-color: #fff;
+        }
+
+        /* Buttons styles */
+        button {
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff3385;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            #tabs ul {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>jQuery UI Tabs - Simple manipulation</h1>
+        <div class="col-1">
+            <li><h3>Widgets</h3>
+                <ul>
+                    <li><a href="../Accordion.html">Accordion</a></li>
+                    <li><a href="/pages/Autocomplete.html">Autocomplete</a></li>
+                    <li><a href="/pages/Button.html">Button</a></li>
+                    <li><a href="/pages/Checkboxradio.html">Checkboxradio</a></li>
+                    <li><a href="/pages/Controlgroup.html">Controlgroup</a></li>
+                    <li><a href="/pages/Datepicker.html">Datepicker</a></li>
+                    <li><a href="/pages/Dialog.html">Dialog</a></li>
+                    <li><a href="/pages/Menu.html">Menu</a></li>
+                    <li><a href="/pages/Progressbar.html">Progressbar</a></li>
+                    <li><a href="/pages/Selectmenu.html">Selectmenu</a></li>
+                    <li><a href="/pages/Slider.html">Slider</a></li>
+                    <li><a href="/pages/Spinner.html">Spinner</a></li>
+                    <li><a href="/pages/Tabs.html">Tabs</a></li>
+                    <li><a href="/pages/Tooltip.html">Tooltip</a></li>
+                </ul>
+            </li>
+        </div>
+
+        <div id="dialog" title="Tab data">
+            <form>
+                <fieldset class="ui-helper-reset">
+                    <label for="tab_title">Title</label>
+                    <input type="text" name="tab_title" id="tab_title" value="Tab Title" class="ui-widget-content ui-corner-all">
+                    <label for="tab_content">Content</label>
+                    <textarea name="tab_content" id="tab_content" class="ui-widget-content ui-corner-all">Tab content</textarea>
+                </fieldset>
+            </form>
+        </div>
+
+        <div><button id="add_tab">Add Tab</button></div>
+
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Nunc tincidunt</a> <span class="ui-icon ui-icon-close" role="presentation">Remove Tab</span></li>
+            </ul>
+            <div id="tabs-1">
+                <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. <br>
+                Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. <br>
+                Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>College of Information and Computing Sciences &copy; 2022</p>
+    </footer>
+
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            var tabTitle = $( "#tab_title" ),
+                tabContent = $( "#tab_content" ),
+                tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>",
+                tabCounter = 2;
+
+            var tabs = $( "#tabs" ).tabs();
+
+            var dialog = $( "#dialog" ).dialog({
+                autoOpen: false,
+                modal: true,
+                buttons: {
+                    Add: function() {
+                        addTab();
+                        $( this ).dialog( "close" );
+                    },
+                    Cancel: function() {
+                        $( this ).dialog( "close" );
+                    }
+                },
+                close: function() {
+                    form[ 0 ].reset();
+                }
+            });
+
+            var form = dialog.find( "form" ).on( "submit", function( event ) {
+                addTab();
+                dialog.dialog( "close" );
+                event.preventDefault();
+            });
+
+            function addTab() {
+                var label = tabTitle.val() || "Tab " + tabCounter,
+                    id = "tabs-" + tabCounter,
+                    li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
+                    tabContentHtml = tabContent.val() || "Tab " + tabCounter + " content.";
+
+                tabs.find( ".ui-tabs-nav" ).append( li );
+                tabs.append( "<div id='" + id + "'><p>" + tabContentHtml + "</p></div>" );
+                tabs.tabs( "refresh" );
+                tabCounter++;
+            }
+
+            $( "#add_tab" ).button().on( "click", function() {
+                dialog.dialog( "open" );
+            });
+
+            $( "#tabs" ).on( "click", "span.ui-icon-close", function() {
+                var panelId = $( this ).closest( "li" ).remove().attr( "aria-controls" );
+                $( "#" + panelId ).remove();
+                tabs.tabs( "refresh" );
+            });
+        });
+    </script>
+</body>
+</html>

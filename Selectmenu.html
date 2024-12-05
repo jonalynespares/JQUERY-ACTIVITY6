@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selectmenu -</title>
+    <link rel="stylesheet" href="../css/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css"> 
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+
+    <style>
+        /* Deep Pink Theme */
+        body {
+            font-family: "Century Gothic", sans-serif;
+            background-color: palevioletred;
+            background-image: linear-gradient(135deg, deeppink 25%, pink 100%);
+            color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h3 {
+            color: #F1C6D6; /* Lighter Pink for Headers */
+        }
+
+        a {
+            color: #F8BBD0; /* Light Pink Links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #F1C6D6; /* Lighter Pink on Hover */
+            text-decoration: underline;
+        }
+
+        .container {
+            margin-top: 20px;
+            padding: 0 15px;
+        }
+
+        .demo {
+            padding: 20px;
+            background-color: #F1C6D6; /* Light Pink Background */
+            border-radius: 8px;
+        }
+
+        fieldset {
+            border: none;
+            margin: 0;
+            padding: 10px;
+        }
+
+        label {
+            display: block;
+            margin: 20px 0 0 0;
+        }
+
+        #circle {
+            float: left;
+            background: purple;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            margin-right: 20px;
+        }
+
+        select {
+            background-color: #F8BBD0;
+            color: #880E4F;
+            border: 1px solid #880E4F;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 10px 0;
+            background-color: #880E4F; /* Dark Pink for Footer */
+            color: #F1C6D6;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 10px;
+            }
+            #circle {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>jQuery UI Selectmenu - Product Selection</h1>
+        <div class="row">
+            <div class="col-md-4 col-12">
+                <h3>Widget</h3>
+                <ul>
+                    <li><a href="../Accordion.html">Accordion</a></li>
+                    <li><a href="/pages/Autocomplete.html">Autocomplete</a></li>
+                    <li><a href="/pages/Button.html">Button</a></li>
+                    <li><a href="/pages/Checkboxradio.html">Checkboxradio</a></li>
+                    <li><a href="/pages/Controlgroup.html">Controlgroup</a></li>
+                    <li><a href="/pages/Datepicker.html">Datepicker</a></li>
+                    <li><a href="/pages/Dialog.html">Dialog</a></li>
+                    <li><a href="/pages/Menu.html">Menu</a></li>
+                    <li><a href="/pages/Progressbar.html">Progressbar</a></li>
+                    <li><a href="/pages/Selectmenu.html">Selectmenu</a></li>
+                    <li><a href="/pages/Slider.html">Slider</a></li>
+                    <li><a href="/pages/Spinner.html">Spinner</a></li>
+                    <li><a href="/pages/Tabs.html">Tabs</a></li>
+                    <li><a href="/pages/Tooltip.html">Tooltip</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-8 col-12 demo">
+                <form action="#">
+                    <div id="circle"></div>
+
+                    <fieldset>
+                        <label for="radius">Circle radius</label>
+                        <select name="radius" id="radius">
+                            <option value="50">50px</option>
+                            <option value="100">100px</option>
+                            <option value="150" selected="selected">150px</option>
+                            <option value="200">200px</option>
+                            <option value="250">250px</option>
+                        </select>
+
+                        <label for="color">Circle color</label>
+                        <select name="color" id="color">
+                            <option value="black">Black</option>
+                            <option value="red">Red</option>
+                            <option value="yellow" selected="selected">Yellow</option>
+                            <option value="blue">Blue</option>
+                            <option value="green">Green</option>
+                        </select>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>College of Information and Computing Sciences &copy; 2022</p>
+    </footer>
+
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <script>
+      $(function() {
+        var circle = $("#circle");
+
+        $("#radius").selectmenu({
+          change: function(event, data) {
+            circle.css({
+              width: data.item.value,
+              height: data.item.value
+            });
+          }
+        });
+
+        $("#color").selectmenu({
+           change: function(event, data) {
+             circle.css("background", data.item.value);
+           }
+        });
+      });
+    </script>
+</body>
+</html>

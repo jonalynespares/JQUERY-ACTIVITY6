@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tooltips</title>
+    <link rel="stylesheet" href="../css/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css"> 
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+
+    <style>
+            /* Deep Pink Theme */
+                body {
+            font-family: "Century Gothic", sans-serif;
+            background-color: palevioletred;
+            background-image: linear-gradient(135deg, deeppink 25%, pink 100%);
+            color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff66b2; /* Deep pink color */
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .col-1 {
+            flex: 1 1 200px;
+            padding: 10px;
+            margin-right: 20px;
+        }
+
+        /* Video player section */
+        .vid-con {
+            flex: 1 1 60%;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .player {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border: 2px groove #ff66b2; /* Deep pink border */
+            background: #1c1c1c;
+            color: #ff99cc;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .tools {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .tools button {
+            background: #ff66b2;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin: 5px;
+        }
+
+        .tools button:hover {
+            background: #ff99cc;
+        }
+
+        /* Dropdown menu styling */
+        .ui-menu {
+            position: absolute;
+            background: #1c1c1c;
+            color: #ff99cc;
+            border: 1px solid #ff66b2;
+            border-radius: 5px;
+        }
+
+        /* Tooltip styles */
+        .ui-tooltip {
+            border: 1px solid #ff66b2;
+            background: #222;
+            color: white;
+        }
+
+        /* Notification box */
+        .notification {
+            position: absolute;
+            display: inline-block;
+            font-size: 2em;
+            padding: .5em;
+            box-shadow: 2px 2px 5px -2px rgba(0, 0, 0, 0.5);
+            background: #1c1c1c;
+            color: #ff99cc;
+            border: 1px solid #ff66b2;
+            border-radius: 5px;
+        }
+
+        /* Flexbox column for links */
+        .col-1 li {
+            list-style-type: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .vid-con {
+                flex: 1 1 100%;
+                justify-content: center;
+            }
+
+            .col-1 {
+                flex: 1 1 100%;
+                margin-right: 0;
+                text-align: center;
+            }
+
+            .player {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>jQuery UI Tooltip - Video Player Demo</h1>
+        <div class="row">
+            <div class="col-1">
+                <h3>Widgets</h3>
+                <ul>
+                    <li><a href="../Accordion.html">Accordion</a></li>
+                    <li><a href="/pages/Autocomplete.html">Autocomplete</a></li>
+                    <li><a href="/pages/Button.html">Button</a></li>
+                    <li><a href="/pages/Checkboxradio.html">Checkboxradio</a></li>
+                    <li><a href="/pages/Controlgroup.html">Controlgroup</a></li>
+                    <li><a href="/pages/Datepicker.html">Datepicker</a></li>
+                    <li><a href="/pages/Dialog.html">Dialog</a></li>
+                    <li><a href="/pages/Menu.html">Menu</a></li>
+                    <li><a href="/pages/Progressbar.html">Progressbar</a></li>
+                    <li><a href="/pages/Selectmenu.html">Selectmenu</a></li>
+                    <li><a href="/pages/Slider.html">Slider</a></li>
+                    <li><a href="/pages/Spinner.html">Spinner</a></li>
+                    <li><a href="/pages/Tabs.html">Tabs</a></li>
+                    <li><a href="/pages/Tooltip.html">Tooltip</a></li>
+                </ul>
+            </div>
+
+            <div class="vid-con">
+                <div class="player">
+                    <video width="100%" height="auto" controls src="../pages/video/4bd81db6-3bde-459f-ae0d-e18c0ea1d914.mp4">
+                        <source src="../pages/video/4bd81db6-3bde-459f-ae0d-e18c0ea1d914.mp4" type="video/mp4">
+                    </video>
+                </div> 
+                <div class="tools">
+                    <button data-icon="ui-icon-circle-arrow-n" title="I like this">Like</button>
+                    <button data-icon="ui-icon-circle-arrow-s">I dislike this</button>
+                    <button data-icon="ui-icon-circle-plus" title="Add to Watch Later">Add to</button>
+                    <button class="menu" data-icon="ui-icon-triangle-1-s">Add to favorites or playlist</button>
+                    <ul>
+                        <li><div>Favorites</div></li>
+                        <li><div>Funnees</div></li>
+                        <li><div>New playlist...</div></li>
+                    </ul>
+                    <button title="Share this video">Share</button>
+                    <button data-icon="ui-icon-alert">Flag as inappropriate</button>
+                </div>
+            </div>
+        </div>  
+    </div>
+    
+    <footer style="text-align:center; padding: 20px; background-color: #141414; color: #ff66b2;">
+        <p>College of Information and Computing Sciences &copy; 2022</p>  
+    </footer>
+
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            function notify(input) {
+                var msg = "Selected " +
+                    String.prototype.trim.call(input.data("tooltip-title") || input.text());
+                $("<div>")
+                    .appendTo(document.body)
+                    .text(msg)
+                    .addClass("notification ui-state-default ui-corner-bottom")
+                    .position({
+                        my: "center top",
+                        at: "center top",
+                        of: window
+                    })
+                    .show({
+                        effect: "blind"
+                    })
+                    .delay(1000)
+                    .hide({
+                        effect: "blind",
+                        duration: "slow"
+                    }, function() {
+                        $(this).remove();
+                    });
+            }
+
+            $("button").each(function() {
+                var button = $(this).button({
+                    icon: $(this).data("icon"),
+                    showLabel: !!$(this).attr("title")
+                });
+                button.not(".menu").on("click", function() {
+                    notify(button);
+                });
+            });
+
+            $(".set").controlgroup({
+                items: {
+                    "button": "button"
+                }
+            });
+
+            $("button.menu")
+                .on("click", function() {
+                    $(document).tooltip("close", { currentTarget: this });
+                    var menu = $(this).next().show().position({
+                        my: "left top",
+                        at: "left bottom",
+                        of: this
+                    });
+                    $(document).one("click", function() {
+                        menu.hide();
+                    });
+                    return false;
+                })
+                .next()
+                .hide()
+                .menu({
+                    selected: function(event, ui) {
+                        notify(ui.item);
+                    }
+                });
+
+            $(document).tooltip({
+                position: {
+                    my: "center top",
+                    at: "center bottom+5",
+                },
+                show: {
+                    duration: "fast"
+                },
+                hide: {
+                    effect: "hide"
+                }
+            });
+        });
+    </script>
+</body>
+</html>

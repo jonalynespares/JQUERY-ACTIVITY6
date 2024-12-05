@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progressbar - Download Dialog</title>
+    <link rel="stylesheet" href="../css/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css"> 
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+    
+    <style>
+        /* Deep Pink Color Scheme */
+        body {
+            background-color: palevioletred; /* Background Color */
+            background-image: linear-gradient(135deg, deeppink 25%, pink 100%); /* Gradient Background */
+            color: #f4f4f9; /* Light Text */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h3 {
+            color: #ff66b2; /* Deep Pink for Headers */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: #ff99cc; /* Light Pink Links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #ff66b2; /* Deep Pink on Hover */
+            text-decoration: underline;
+        }
+
+        /* Progress Bar Styles */
+        #progressbar {
+            margin-top: 20px;
+            height: 25px;
+            background-color: #ff66b2; /* Deep Pink background for progress bar */
+            border-radius: 10px;
+        }
+
+        .progress-label {
+            font-weight: bold;
+            text-shadow: 1px 1px 0 #fff;
+            color: #ff99cc; /* Light pink color for text */
+        }
+
+        .ui-dialog-titlebar-close {
+            display: none;
+        }
+
+        /* Menu Styling */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        ul li a {
+            color: #F8BBD0;
+            text-decoration: none;
+        }
+
+        ul li a:hover {
+            color: #F1C6D6;
+        }
+
+        /* Footer Styling */
+        footer {
+            text-align: center;
+            background-color: black;
+            padding: 10px 0;
+            color: #F1C6D6;
+            margin-top: 30px;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .col-1 {
+                display: block;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>jQuery UI Progressbar - Download Dialog</h1>
+        <div class="row">
+            <!-- Sidebar Menu -->
+            <div class="col-md-3 col-12">
+                <h3>Widget</h3>
+                <ul>
+                    <li><a href="../Accordion.html">Accordion</a></li>
+                    <li><a href="/pages/Autocomplete.html">Autocomplete</a></li>
+                    <li><a href="/pages/Button.html">Button</a></li>
+                    <li><a href="/pages/Checkboxradio.html">Checkboxradio</a></li>
+                    <li><a href="/pages/Controlgroup.html">Controlgroup</a></li>
+                    <li><a href="/pages/Datepicker.html">Datepicker</a></li>
+                    <li><a href="/pages/Dialog.html">Dialog</a></li>
+                    <li><a href="/pages/Menu.html">Menu</a></li>
+                    <li><a href="/pages/Progressbar.html">Progressbar</a></li>
+                    <li><a href="/pages/Selectmenu.html">Selectmenu</a></li>
+                    <li><a href="/pages/Slider.html">Slider</a></li>
+                    <li><a href="/pages/Spinner.html">Spinner</a></li>
+                    <li><a href="/pages/Tabs.html">Tabs</a></li>
+                    <li><a href="/pages/Tooltip.html">Tooltip</a></li>
+                </ul>
+            </div>
+
+            <!-- Download Dialog & Button -->
+            <div class="col-md-9 col-12">
+                <div id="dialog" title="File Download">
+                    <div class="progress-label">Starting download...</div>
+                    <div id="progressbar"></div>
+                </div>
+                <button id="downloadButton" class="btn btn-light mt-3">Start Download</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>College of Information and Computing Sciences &copy; 2022</p>
+    </footer>
+
+    <!-- jQuery & jQuery UI Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            var progressTimer,
+                progressbar = $("#progressbar"),
+                progressLabel = $(".progress-label"),
+                dialogButtons = [{
+                    text: "Cancel Download",
+                    click: closeDownload
+                }],
+                dialog = $("#dialog").dialog({
+                    autoOpen: false,
+                    closeOnEscape: false,
+                    resizable: false,
+                    buttons: dialogButtons,
+                    open: function() {
+                        progressTimer = setTimeout(progress, 2000);
+                    },
+                    beforeClose: function() {
+                        downloadButton.button("option", {
+                            disabled: false,
+                            label: "Start Download"
+                        });
+                    }
+                }),
+                downloadButton = $("#downloadButton")
+                    .button()
+                    .on("click", function() {
+                        $(this).button("option", {
+                            disabled: true,
+                            label: "Downloading..."
+                        });
+                        dialog.dialog("open");
+                    });
+
+            progressbar.progressbar({
+                value: false,
+                change: function() {
+                    progressLabel.text("Current Progress: " + progressbar.progressbar("value") + "%");
+                },
+                complete: function() {
+                    progressLabel.text("Complete!");
+                    dialog.dialog("option", "buttons", [{
+                        text: "Close",
+                        click: closeDownload
+                    }]);
+                    $(".ui-dialog button").last().trigger("focus");
+                }
+            });
+
+            function progress() {
+                var val = progressbar.progressbar("value") || 0;
+
+                progressbar.progressbar("value", val + Math.floor(Math.random() * 3));
+
+                if (val <= 99) {
+                    progressTimer = setTimeout(progress, 50);
+                }
+            }
+
+            function closeDownload() {
+                clearTimeout(progressTimer);
+                dialog
+                    .dialog("option", "buttons", dialogButtons)
+                    .dialog("close");
+                progressbar.progressbar("value", false);
+                progressLabel.text("Starting download...");
+                downloadButton.trigger("focus");
+            }
+        });
+    </script>
+
+</body>
+</html>

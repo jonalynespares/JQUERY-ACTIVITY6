@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controlgroup</title>
+    <link rel="stylesheet" href="../css/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css"> 
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+  
+    <style>
+    /* Updated Controlgroup Colors based on Accordion */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: deeppink; /* Dark Background similar to accordion */
+        color: #ff99cc; /* Light Text Color */
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+    }
+
+    h1, h3 {
+        color: #ff66b2; /* Light Pink similar to Accordion header */
+        text-align: center;
+        padding: 20px;
+    }
+
+    a {
+        color: #ff99cc; /* Link Color matches Accordion Text Color */
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #ff66b2; /* Hover effect similar to Accordion */
+        text-decoration: underline;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 40px;
+        padding: 20px 0;
+        background-color: #1c1c1c; /* Dark Footer, matching Accordion */
+        color: #ff66b2; /* Light Pink Text in Footer */
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .col-md-3, .col-12 {
+        flex: 1;
+        min-width: 200px;
+        background: #333; /* Dark Background for Sidebar */
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .col-md-3 ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .col-md-3 li {
+        margin: 10px 0;
+    }
+
+    .col-md-3 li a {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #ff99cc; /* Sidebar link color matches Accordion text */
+    }
+
+    .wrap {
+        flex: 2;
+        background-color: #222; /* Content background matching Accordion */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .toolbar {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .toolbar button, select {
+        background-color: #1c1c1c; /* Dark Background like Accordion header */
+        color: #ff99cc; /* Text color matches Accordion */
+        padding: 10px 15px;
+        border: 1px solid #ff66b2; /* Border Color like Accordion */
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .toolbar button:hover, select:hover {
+        background-color: #ff66b2; /* Hover effect similar to Accordion */
+        color: #ffffff;
+    }
+
+    #page {
+        width: 100%;
+        height: 450px;
+        border: 1px solid #ff66b2; /* Border color matches Accordion */
+        border-radius: 10px;
+        padding: 20px;
+        font-size: 1em;
+        font-family: "Lucida Grande", sans-serif;
+        background-color: #222; /* Dark background for text area */
+        color: #ff99cc; /* Text color matches Accordion */
+        overflow: auto;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+        .row {
+            flex-direction: column;
+        }
+
+        .toolbar button, select {
+            width: 100%;
+        }
+    }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>jQuery UI Controlgroup - Toolbar</h1>
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-md-3 col-12">
+                <h3>Widget</h3>
+                <ul>
+                    <li><a href="../Accordion.html">Accordion</a></li>
+                    <li><a href="/pages/Autocomplete.html">Autocomplete</a></li>
+                    <li><a href="/pages/Button.html">Button</a></li>
+                    <li><a href="/pages/Checkboxradio.html">Checkboxradio</a></li>
+                    <li><a href="/pages/Controlgroup.html">Controlgroup</a></li>
+                    <li><a href="/pages/Datepicker.html">Datepicker</a></li>
+                    <li><a href="/pages/Dialog.html">Dialog</a></li>
+                    <li><a href="/pages/Menu.html">Menu</a></li>
+                    <li><a href="/pages/Progressbar.html">Progressbar</a></li>
+                    <li><a href="/pages/Selectmenu.html">Selectmenu</a></li>
+                    <li><a href="/pages/Slider.html">Slider</a></li>
+                    <li><a href="/pages/Spinner.html">Spinner</a></li>
+                    <li><a href="/pages/Tabs.html">Tabs</a></li>
+                    <li><a href="/pages/Tooltip.html">Tooltip</a></li>
+                </ul>
+            </div>
+
+            <!-- Toolbar and Text Area -->
+            <div class="wrap">
+                <div class="toolbar">
+                    <button id="print">Print</button>
+                    <button id="undo">Undo</button>
+                    <button id="redo">Redo</button>
+                    <select id="zoom">
+                        <option selected disabled>Zoom</option>
+                        <option>50%</option>
+                        <option>75%</option>
+                        <option>90%</option>
+                        <option>100%</option>
+                        <option>125%</option>
+                        <option>150%</option>
+                        <option>200%</option>
+                    </select>
+                    <select id="fontname">
+                        <option selected disabled>Font</option>
+                        <option>Arial</option>
+                        <option>Comic Sans MS</option>
+                        <option>Courier New</option>
+                        <option>Georgia</option>
+                        <option>Impact</option>
+                        <option>Lucida Grande</option>
+                        <option>Times New Roman</option>
+                        <option>Verdana</option>
+                    </select>
+                    <select id="fontsize">
+                        <option selected disabled>Size</option>
+                        <option value="1">8px</option>
+                        <option value="2">9px</option>
+                        <option value="3">10px</option>
+                        <option value="4">11px</option>
+                        <option value="5">12px</option>
+                        <option value="6">14px</option>
+                        <option value="7">18px</option>
+                        <option value="8">24px</option>
+                        <option value="9">30px</option>
+                        <option value="10">36px</option>
+                    </select>
+                    <select id="hilitecolor" title="Background color">
+                        <option selected disabled>Highlight</option>
+                        <option value="white">None</option>
+                        <option value="red">Red</option>
+                        <option value="yellow">Yellow</option>
+                        <option value="green">Green</option>
+                        <option value="blue">Blue</option>
+                        <option value="grey">Grey</option>
+                        <option value="purple">Purple</option>
+                        <option value="orange">Orange</option>
+                    </select>
+                    <select id="forecolor" title="Color">
+                        <option selected disabled>Color</option>
+                        <option value="black">Black</option>
+                        <option value="white">White</option>
+                        <option value="red">Red</option>
+                        <option value="yellow">Yellow</option>
+                        <option value="green">Green</option>
+                        <option value="blue">Blue</option>
+                        <option value="#ccc">Grey</option>
+                        <option value="purple">Purple</option>
+                        <option value="orange">Orange</option>
+                    </select>
+                    <button id="bold">B</button>
+                    <button id="italic">I</button>
+                    <button id="underline">U</button>
+                </div>
+                <pre id="page" contenteditable="true">
+                    Chasing Dreams
+                    by: Jonalyn Espares
+
+                    I’m weary, tired, and worn,
+                    The night feels endless, hearts are torn.
+                    The path ahead is rough, unclear,
+                    Yet I press on, despite the fear.
+
+                    I’ve stumbled many times before,
+                    Fallen hard, can’t take much more.
+                    The weight of dreams pulls me down,
+                    Yet I rise, despite the frown.
+                    For in the silence of my soul,
+                    A whisper calls, it makes me whole.
+                    A dream that burns within my chest,
+                    A vision that won't let me rest.
+
+                    Though tired, I’ll keep the fight,
+                    I’ll chase my dreams through endless night.
+                    For in the depths of struggle’s grip,
+                    I find the strength to never slip.
+
+                    So I'll carry on, though shadows creep,
+                    For dreams are worth the price I keep.
+                    No, I won't give up, though I'm undone,
+                    I’ll chase my dreams until they’re won.
+                </pre>
+            </div>
+        </div>
+    </div>
+  
+    <footer>
+        <p>Footer Text</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"></script>
+    <script>
+        $(function() {
+            $("button, select").button();
+            $("button").click(function() {
+                alert(this.id + " clicked!");
+            });
+        });
+    </script>
+</body>
+</html>

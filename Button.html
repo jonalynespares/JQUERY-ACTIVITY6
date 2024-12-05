@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Button</title>
+
+    <!-- Include jQuery UI CSS -->
+    <link rel="stylesheet" href="../css/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css"> 
+    <link rel="stylesheet" href="../css/custom.css">
+
+    <!-- Custom Styles -->
+    <style>
+        /* Deep Pink Theme */
+        body {
+            font-family: "Century Gothic", sans-serif;
+            background-color: palevioletred;
+            background-image: linear-gradient(135deg, deeppink 25%, pink 100%);
+            color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #ff66b2; /* Deep Pink */
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        a {
+            color: #ff99cc; /* Light Pink */
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #ffffff; /* Hover White */
+            text-decoration: underline;
+        }
+
+        .sidebar h3 {
+            color: #ff99cc;
+        }
+
+        .sidebar ul li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            padding: 10px;
+            background-color: #1c1c1c; /* Dark Pink */
+            color: #ff99cc; /* Light Pink Text */
+            border: 1px solid #ff66b2;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #ff66b2;
+            color: #ffffff;
+        }
+
+        .widget {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .widget button,
+        .widget input[type="submit"],
+        .widget a {
+            background-color: #1c1c1c; /* Button Background (Dark Pink) */
+            color: #ff99cc; /* Button Text Color (Light Pink) */
+            border: 1px solid #ff66b2; /* Deep Pink Border */
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .widget button:hover,
+        .widget input[type="submit"]:hover,
+        .widget a:hover {
+            background-color: #ff66b2; /* Hover Background */
+            color: #ffffff; /* Hover Text Color */
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 10px 0;
+            background-color: #141414;
+            color: #ff66b2;
+        }
+
+        @media (max-width: 768px) {
+            .col-1 {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .widget {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>jQuery UI Button - Deep Pink Theme</h1>
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-12 col-md-3 sidebar">
+                <h3>Widgets</h3>
+                <ul>
+                    <li><a href="../Accordion.html">Accordion</a></li>
+                    <li><a href="/pages/Autocomplete.html">Autocomplete</a></li>
+                    <li><a href="/pages/Button.html">Button</a></li>
+                    <li><a href="/pages/Checkboxradio.html">Checkboxradio</a></li>
+                    <li><a href="/pages/Controlgroup.html">Controlgroup</a></li>
+                    <li><a href="/pages/Datepicker.html">Datepicker</a></li>
+                    <li><a href="/pages/Dialog.html">Dialog</a></li>
+                    <li><a href="/pages/Menu.html">Menu</a></li>
+                    <li><a href="/pages/Progressbar.html">Progressbar</a></li>
+                    <li><a href="/pages/Selectmenu.html">Selectmenu</a></li>
+                    <li><a href="/pages/Slider.html">Slider</a></li>
+                    <li><a href="/pages/Spinner.html">Spinner</a></li>
+                    <li><a href="/pages/Tabs.html">Tabs</a></li>
+                    <li><a href="/pages/Tooltip.html">Tooltip</a></li>
+                </ul>
+            </div>
+
+            <!-- Widget Buttons Section -->
+            <div class="col-12 col-md-9 widget">
+                <h2>Widget Buttons</h2>
+                <button>A button element</button>
+                <input type="submit" value="A submit button">
+                <a href="#">An anchor</a>
+
+                <h2>CSS Buttons</h2>
+                <button class="ui-button ui-widget ui-corner-all">A button element</button>
+                <input class="ui-button ui-widget ui-corner-all" type="submit" value="A submit button">
+                <a class="ui-button ui-widget ui-corner-all" href="#">An anchor</a>
+            </div>
+        </div>
+    </div>  
+
+    <footer>
+        <p>College of Information and Computing Sciences &copy; 2022</p>  
+    </footer>
+
+    <!-- Include jQuery and jQuery UI -->
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+
+    <script>
+      $( function() {
+        $( ".widget input[type=submit], .widget a, .widget button" ).button();
+        $( "button, input, a" ).on( "click", function( event ) {
+          event.preventDefault();
+        } );
+      } );
+    </script>
+</body>
+</html>

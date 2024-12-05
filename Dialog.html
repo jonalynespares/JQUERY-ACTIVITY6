@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dialog - Modal Form</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+    <style>
+        /* Deep Pink Color Scheme */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: palevioletred;
+            background-image: linear-gradient(135deg, deeppink 25%, pink 100%);
+            color: #f4f4f9; /* Light Color for Text */
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h3 {
+            color: #ff66b2; /* Deep Pink for Headers */
+        }
+
+        a {
+            color: #ff99cc; /* Light Pink Links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #ff66b2; /* Deep Pink on Hover */
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 10px 0;
+            background-color: #141414; /* Dark Background for Footer */
+            color: #ff66b2; /* Deep Pink for Footer Text */
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        /* Styling for Dialog */
+        .ui-dialog-titlebar-close {
+            background-color: #ff99cc;
+            color: #ff66b2;
+        }
+
+        .ui-widget-content {
+            background-color: #ff66b2;
+            border: 1px solid #ff66b2;
+        }
+
+        /* Form and table styles */
+        #dialog-form label {
+            font-weight: bold;
+            color: #ff99cc;
+        }
+
+        #datepicker, input[type="text"], input[type="password"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #222;
+            color: #ffffff;
+            border: 1px solid #ff66b2;
+        }
+
+        select {
+            background-color: #ff66b2;
+            border: 1px solid #ff66b2;
+            color: #ffffff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 10px;
+            }
+            .row {
+                display: flex;
+                flex-direction: column;
+            }
+            .col-1 {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>jQuery UI Dialog - Modal Form</h1>
+        <div class="row">
+            <div class="col-md-3 col-12">
+                <h3>Widget</h3>
+                <ul>
+                    <li><a href="../Accordion.html">Accordion</a></li>
+                    <li><a href="/pages/Autocomplete.html">Autocomplete</a></li>
+                    <li><a href="/pages/Button.html">Button</a></li>
+                    <li><a href="/pages/Checkboxradio.html">Checkboxradio</a></li>
+                    <li><a href="/pages/Controlgroup.html">Controlgroup</a></li>
+                    <li><a href="/pages/Datepicker.html">Datepicker</a></li>
+                    <li><a href="/pages/Dialog.html">Dialog</a></li>
+                    <li><a href="/pages/Menu.html">Menu</a></li>
+                    <li><a href="/pages/Progressbar.html">Progressbar</a></li>
+                    <li><a href="/pages/Selectmenu.html">Selectmenu</a></li>
+                    <li><a href="/pages/Slider.html">Slider</a></li>
+                    <li><a href="/pages/Spinner.html">Spinner</a></li>
+                    <li><a href="/pages/Tabs.html">Tabs</a></li>
+                    <li><a href="/pages/Tooltip.html">Tooltip</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-9 col-12">
+                <div id="dialog-form" title="Create new user">
+                    <p class="validateTips">All form fields are required.</p>
+                    <form>
+                        <fieldset>
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" value="Jane Smith" class="text ui-widget-content ui-corner-all">
+                            <label for="email">Email</label>
+                            <input type="text" name="email" id="email" value="jane@smith.com" class="text ui-widget-content ui-corner-all">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" value="xxxxxxx" class="text ui-widget-content ui-corner-all">
+                            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div id="users-contain" class="ui-widget">
+                    <h1>Existing Users:</h1>
+                    <table id="users" class="ui-widget ui-widget-content">
+                        <thead>
+                            <tr class="ui-widget-header">
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>JONALYNESPARES</td>
+                                <td>jonalynespares86@gmail.com</td>
+                                <td>cutiee</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <button id="create-user" class="btn btn-light">Create new user</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>College of Information and Computing Sciences &copy; 2022</p>
+    </footer>
+
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            var dialog, form,
+                emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA0-9])?)*$/,
+                name = $("#name"),
+                email = $("#email"),
+                password = $("#password"),
+                allFields = $([]).add(name).add(email).add(password),
+                tips = $(".validateTips");
+
+            function updateTips(t) {
+                tips
+                    .text(t)
+                    .addClass("ui-state-highlight");
+                setTimeout(function() {
+                    tips.removeClass("ui-state-highlight", 1500);
+                }, 500);
+            }
+
+            function checkLength(o, n, min, max) {
+                if (o.val().length > max || o.val().length < min) {
+                    o.addClass("ui-state-error");
+                    updateTips("Length of " + n + " must be between " + min + " and " + max + ".");
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            function checkRegexp(o, regexp, n) {
+                if (!(regexp.test(o.val()))) {
+                    o.addClass("ui-state-error");
+                    updateTips(n);
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            function addUser() {
+                var valid = true;
+                allFields.removeClass("ui-state-error");
+
+                valid = valid && checkLength(name, "username", 3, 16);
+                valid = valid && checkLength(email, "email", 6, 80);
+                valid = valid && checkLength(password, "password", 5, 16);
+
+                valid = valid && checkRegexp(name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter.");
+                valid = valid && checkRegexp(email, emailRegex, "eg. ui@jquery.com");
+                valid = valid && checkRegexp(password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9");
+
+                if (valid) {
+                    $("#users tbody").append("<tr>" +
+                        "<td>" + name.val() + "</td>" +
+                        "<td>" + email.val() + "</td>" +
+                        "<td>" + password.val() + "</td>" +
+                        "</tr>");
+                    dialog.dialog("close");
+                }
+                return valid;
+            }
+
+            dialog = $("#dialog-form").dialog({
+                autoOpen: false,
+                height: 350,
+                width: 350,
+                modal: true,
+                buttons: {
+                    "Create user": addUser,
+                    Cancel: function() {
+                        dialog.dialog("close");
+                    }
+                },
+                close: function() {
+                    form[0].reset();
+                    allFields.removeClass("ui-state-error");
+                }
+            });
+
+            form = dialog.find("form").on("submit", function(event) {
+                event.preventDefault();
+                addUser();
+            });
+
+            $("#create-user").button().on("click", function() {
+                dialog.dialog("open");
+            });
+        });
+    </script>
+</body>
+</html>
